@@ -11,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -24,6 +25,8 @@ public class Albumina {
         driver = new ChromeDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
     }
     @After
     public void tearDown() {
@@ -32,7 +35,7 @@ public class Albumina {
     @Test
     public void albumina() {
         driver.get("https://www.gsuplementos.com.br/");
-        driver.manage().window().setSize(new Dimension(1346, 708));
+       // driver.manage().window().setSize(new Dimension(1346, 708));
         driver.findElement(By.name("busca")).click();
         driver.findElement(By.name("busca")).sendKeys("albumina");
         driver.findElement(By.name("busca")).sendKeys(Keys.ENTER);
